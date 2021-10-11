@@ -20,6 +20,7 @@
 			√ retornara el resultado y lo almacenara en una variable global.
 		√ Imprimimos el resultado.
 '''
+import sys
 
 # Presentacion del programa:
 print('Bienvenido al conversor mas popular de internet/nQue moneda desea convertir a Dolar?')
@@ -28,16 +29,15 @@ print('1) CLP/n2)COP/COL/n3)ARS/n4)Salir')
 # almacenando opcion
 type_of_currency = int(input('>> ')) 
 
-# Solicitando cantidad a convertir
-money_to_convert = int(input('Ingrese la cantidad de dinero a convertir/n>> $'))
-
 # Almacenando resultado de conversion:
 my_dollars = 0 
 
 # Validando opcion ingresada por usuario:
 def validate_option(opt):
-		if opt == 1 or opt == 2 or opt == 3 or opt == 4:
+		if opt == 1 or opt == 2 or opt == 3:
 				return opt 
+		elif opt == 4:
+				sys.exit()
 		else:
 				while opt > 4 or opt < 1:
 					print('Por favor eliga una opcion valida')
@@ -45,6 +45,10 @@ def validate_option(opt):
 					opt  = int(input('>> ')) 
 				
 				return opt
+
+# Solicitando cantidad de dinero a convertir
+money_to_convert = int(input('Ingrese la cantidad de dinero que desea convertir en dolar\n>> $'))
+
 # Convirtiendo moneda:
 def currency_converter(status_validate, currency):
 		if status_validate  == 1:
@@ -55,12 +59,10 @@ def currency_converter(status_validate, currency):
 				 
 		elif status_validate  == 3:
 				return  0.010 * money_to_convert
-		
-		elif status_validate  == 4:
-				return 'Gracias por usarme :)'
 
 # Almacenando el resultado de la conversion:
 my_dollars = currency_converter(validate_option(type_of_currency), money_to_convert)
+
 # imprimir valor por pantalla:
 print(f'Mi dinero : ${money_to_convert} ')
 print(f'Mis dolares ${my_dollars}')
